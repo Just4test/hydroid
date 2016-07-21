@@ -1,0 +1,19 @@
+{
+  "name": "hydroid-client",
+  "version": "0.0.1",
+  "description": "Hydroid客户端",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Hydroid"
+  ],
+  "author": "Just4test",
+  "license": "ISC",
+  "dependencies": {
+    "electron-prebuilt": "^1.2.8",
+    "leancloud-realtime": "^3.1.1",
+    "leancloud-storage": "^1.3.1"
+  }
+}
