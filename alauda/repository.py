@@ -233,7 +233,7 @@ class Repository(APISimpleDataBase):
             if len(build_config.tag_configs) == 1:
                 tag = build_config.tag_configs[0].image_tag
             else:
-                raise Exception('当前仓库具有超过一个构建标签，请显式指定构建标签。')
+                raise Exception('当前仓库具有超过一个构建标签，请显示指定构建标签。')
         
         url = '/v1/builds'
         data = {
