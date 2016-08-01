@@ -2,3 +2,6 @@ __pycache__/
 .c9/
 .~c9*
 test*
+client/node_modules/
+.sync/
+btsync

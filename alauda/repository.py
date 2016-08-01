@@ -121,7 +121,8 @@ class BuildConfig(APIBase):
 class Repository(APISimpleDataBase):
     
     _aliasmap = {
-        'name':'repo_name'
+        'name':'repo_name',
+        'build_config_':'build_config'
     }
     
     _hideset = {'service_name'}
@@ -176,7 +177,7 @@ class Repository(APISimpleDataBase):
         if 200 == r.status_code:
             ret = []
             for data in r.json()['results']:
-                ret.append(cls(alauda, data, False))
+                ret.append(cls(alauda, data, True))
             return ret
         else:
             raise Exception('发生了异常：\n{}\n{}'.format(r.status_code, r.text))
@@ -210,7 +211,7 @@ class Repository(APISimpleDataBase):
             if self._is_simple:
                 self._json_data = self._get_full()
                 self._is_simple = True
-            self._build_config = BuildConfig(self.json_data['build_config'])
+            self._build_config = BuildConfig(self.build_config_)
         return self._build_config
         
     def __repr__(self):
@@ -232,7 +233,7 @@ class Repository(APISimpleDataBase):
             if len(build_config.tag_configs) == 1:
                 tag = build_config.tag_configs[0].image_tag
             else:
-                raise Exception('当前仓库具有超过一个构建标签，请显示指定构建标签。')
+                raise Exception('当前仓库具有超过一个构建标签，请显式指定构建标签。')
         
         url = '/v1/builds'
         data = {
